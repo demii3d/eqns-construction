@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { site } from '../data/site'
-import { images } from '../data/images'
 
 interface Props {
   title: string
@@ -21,7 +20,7 @@ function setMeta(attr: 'name' | 'property', key: string, content: string) {
 }
 
 /** Lightweight per-route metadata. Swap for a head manager if SSR is ever added. */
-export function SEOHead({ title, description, image = images.hero.src, noindex = false }: Props) {
+export function SEOHead({ title, description, image = '/og-image.png', noindex = false }: Props) {
   const { pathname } = useLocation()
   useEffect(() => {
     const origin = site.url.replace(/\/$/, '') || window.location.origin
@@ -35,6 +34,9 @@ export function SEOHead({ title, description, image = images.hero.src, noindex =
     setMeta('property', 'og:site_name', site.name)
     setMeta('property', 'og:url', url)
     setMeta('property', 'og:image', origin + image)
+    setMeta('property', 'og:image:width', '1200')
+    setMeta('property', 'og:image:height', '630')
+    setMeta('property', 'og:image:alt', 'EQNS: Construction & Property Management. The Right Elements. The Right Results.')
     setMeta('name', 'twitter:card', 'summary_large_image')
     let link = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
     if (!link) {

@@ -22,7 +22,7 @@ export default function ServicePage() {
 
   return (
     <>
-      <SEOHead title={`${service.title} | EQNS`} description={service.metaDescription} image={service.image.src} />
+      <SEOHead title={`${service.title} | EQNS`} description={service.metaDescription} />
       <PageHero
         eyebrow={`Service ${service.number} · ${service.category}`}
         title={service.title}
